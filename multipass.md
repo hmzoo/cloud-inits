@@ -13,6 +13,8 @@ commandes :
 ~~~bash
 # nouvelle vm
 multipass launch -n nomvm
+# nouvelle vm avec cloud-init
+multipass launch --cloud-init fichier.yaml 
 # stop vm
 multipass stop  nomvm
 # start vm
