@@ -24,7 +24,8 @@ multipass shell nomvm
 # supprimer un vm
 multipass delete nomvm
 multipass purge
-
+## configurer une vm 
+multipass launch -n strapapp -c 2 -m 2G --cloud-init cloud-init-strapapp.yaml
 
 ~~~
 
@@ -33,7 +34,8 @@ multipass purge
 ## Lancement des VM
 
 ~~~bash
-
+openssl rand -base64 24
+chartbrew
 
 
 

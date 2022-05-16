@@ -1,0 +1,28 @@
+#cloud-config
+
+
+ssh_authorized_keys: 
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCdyaLpMyKl/m99glZM8GvJ05WV2lnRCj3wRdt5WSh8EvgFtFRVCdWZKeaqvr/wRZRiAo6ZOXcnlZ0OrxlItGaspdYaiev+aKpUus9pXo8WaMcG0sm1DanjIBpYO1dmgiK7b/wzdkpBp4kal3U1EDB3xmx/qCAY9HYYi3ZE0GinQxMgxrE8iYqjCD78syCpzjbTa4+NI55g3tpXfbiVM712n3iSt8LYchUniY+pi/nVrFexPwb61zvCwWPacW4VryfU+XWBrC0C6jYszE27UtBr4idCcyA3Sa8GyxytvlpZ8yyX/u5strMS/UZsO1wnE+tO6mKLwxFpHth9AGeohCsZLiSW76lP3BBL0930RCLG6oOJBpPETjBHUWEi+zvGW7pO34pFusmwGNU3xPd8I9yAsdXeHskitgqN4T0Nz2PGUK8hP5rg6UultHcjTcN/nzyoD5WgC6bG2t3zT3Im4i/lviXjoA21SF6poB2CaEKPTZPrFPHhf3Xl2L4SsUjhSWk= hmj@zotac
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQXRvnncyYn9Qq3hWlUjDbSWgLPo156irN4FDqlCK2jCBp/LeBuGXUl1KQMvPIjlgZDnnQTA4VFvn2Wn6kYFy9C/eeIA/dVii+6IM84iJlDSlyYpks/FeeJujLoDOP5zs9ZBcEP4HNQglQiJNG2mtr32/RF5nGRb3ruVqermApihfkuu+pEyOzprJuUJEoJ0/wOzoxSpbCNUMr4dJQ4Uo8elAOMXHBAc01U43kjlMWeCdCMdrCnGCyN5beW8p8DnZwKWvlXmhIBnchNtnf67AdniJS6uERS1XbvjG4WjGoREw+IcLllPrWkSpbx3h6UajG11Ch7ApkpvGx19Yxq3APvUkpvK9S6N1sYuCAf+ENVSfflqFePnRUnRR/7i0/pQ775ITHTp86Ry+VToL6onoIdOhfJEoBHgmL+p/tLRMIbXSIKOiL2jM/5MAOngs3yiy91XuiCsW2wT2OaodO7ghI/AwEdFspzFPW9AwyStaAmfyPF3zEuk3X1xmIMZ3xggs= mrpink@POR105615
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyY6yJm50bv5+BQcBilSTA+OhbU/XPIUpHBOBZb48dSYje2hoB5B8ddGq5K/GPMb539p+Es9NvGkQ8n1GIfOujSH3HUnfIdVZ/dGi7C/z5tuUbDXfgy9tFh9LOE7rPu9OISLVdFzECXfRMp7+riyOtl5owfq0/PWuhya/FkIbb2kQw9ypls0TcUvawJXrdpK+0LhGtVi6kFYj87RrsxlAX7TuzJsQocf2KBpBbnm4GFbFjN34+zNUXf7ygp5W31tmyRnTihFRzBRkyNiM1oH8FliyMnh86ASRQa9hWxI5AFvJwyQf4oVTicW/j+f0QuMH2KNxOqU3ZcWAH60Gnod2h domcg72\jean.henri-michel@POR105615
+
+package_update: true
+
+packages:
+ - curl
+ - ansible
+
+runcmd:
+ - curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
+ - sudo bash /tmp/nodesource_setup.sh
+ - sudo apt-get install -y nodejs
+ - su ubuntu -c "git config --global user.name HMJ"
+ - su ubuntu -c "git config --global user.email hmj@goatpage.com"
+ - cd /home/ubuntu
+ - su ubuntu -c "git clone https://github.com/hmzoo/strapapp.git"
+ - cd /home/ubuntu/strapapp/backend
+ - su ubuntu -c "bash genenv.sh"
+ - su ubuntu -c "npm install"
+ - su ubuntu -c "npm build admin"
+
+final_message: "The system is finally up, after $UPTIME seconds"
