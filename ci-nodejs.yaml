@@ -16,5 +16,7 @@ runcmd:
  - curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
  - sudo bash /tmp/nodesource_setup.sh
  - sudo apt-get install -y nodejs
+ - su ubuntu -c "git config --global user.name HMJ"
+ - su ubuntu -c "git config --global user.email hmj@goatpage.com"
 
 final_message: "The system is finally up, after $UPTIME seconds"
